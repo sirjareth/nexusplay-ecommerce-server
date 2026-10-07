@@ -32,18 +32,3 @@ module.exports.verify = (req, res, next) => {
     });
   }
 };
-
-module.exports.errorHandler = (err, req, res, next) => {
-
-  console.error(err);
-
-  const errorMessage = err.message || 'Internal Server Error';
-
-  res.json({
-    error: {
-      mesage: errorMessage,
-      errorCode: err.code || 'SERVER ERROR',
-      details: err.details || null
-    }
-  })
-}

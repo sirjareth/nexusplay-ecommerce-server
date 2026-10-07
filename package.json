@@ -1,16 +1,23 @@
 {
-  "name": "e-commerceapi",
+  "name": "csp2-b610-ronquillo-roque",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+
+  "type": "commonjs",
+
+  "main": "lambda.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@ec2-54-147-90-61.compute-1.amazonaws.com:B610/csp2-b610-ronquillo-roque.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
+    "@codegenie/serverless-express": "^5.0.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",

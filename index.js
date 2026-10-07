@@ -2,12 +2,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 require("dotenv").config();
 
-const { errorHandler } = require("./auth");
-
+const productRoute = require("./routes/productRoutes");
 const userRoute = require("./routes/userRoutes");
-const productRoutes = require('./routes/productRoutes');
+const cartRoute = require("./routes/cartRoutes");
+const orderRoute = require("./routes/orderRoutes");
 
 const app = express();
 
@@ -18,14 +19,21 @@ mongoose.connect(process.env.MONGODB_STRING);
 mongoose.connection.once("open", () => console.log("Connected to MongoDB"));
 
 app.use("/users", userRoute);
-app.use('/products', productRoutes);
-app.use(errorHandler);
+app.use("/products", productRoute);
+app.use("/cart", cartRoute);
+app.use("/orders", orderRoute);
+
+/*
+
+NEEDED TO RUN SERVER LOCALLY
 
 if (require.main === module) {
   app.listen(process.env.PORT || 3000, () => {
     console.log(`API is now online on port ${process.env.PORT || 3000}`);
   });
 }
+
+*/
 
 
 

@@ -1,0 +1,10 @@
+{
+	"url": "https://keisn8waw3.execute-api.us-east-2.amazonaws.com/production",
+	"routesPrefix": {
+
+		"users": "/users",
+		"products": "/products",
+		"orders": "/orders",
+		"cart": "/cart"
+	}
+}
