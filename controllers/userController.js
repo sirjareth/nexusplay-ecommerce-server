@@ -50,7 +50,7 @@ module.exports.register = (req, res) => {
   });
 };
 
-module.exports.login = (req, res) => {
+module.exports.login = (req, res, next) => {
 
   if (!req.body.email.includes("@")) {
     return res.status(400).send({ message: "Invalid email format" });
