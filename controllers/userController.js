@@ -2,20 +2,17 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const auth = require("../auth");
 
-
-
-module.exports.register = (req, res) => {
-
+module.exports.register = (req, res, next) => {
   if (!req.body.email.includes(`@`)) {
     return res.status(400).send({ message: 'Invalid email format'});
   }
 
-  if (!req.body.mobileNo.length !== 11) {
+  if (req.body.mobileNo.length !== 11) {
     return res.status(400).send({ message: `Mobile number must be 11 digits`});
   }
 
-  if (req.body.password < 8) {
-    return res.status(400).send({ message: `Pssword must be at least 8 characters`});
+  if (req.body.password.length < 8) {
+    return res.status(400).send({ message: `Password must be at least 8 characters`});
   }
 
   User.findOne({ email: req.body.email })
@@ -51,14 +48,12 @@ module.exports.register = (req, res) => {
 };
 
 module.exports.login = (req, res, next) => {
-
   if (!req.body.email.includes("@")) {
     return res.status(400).send({ message: "Invalid email format" });
   }
 
   User.findOne({ email: req.body.email })
   .then((result) => {
-
     if (result === null) {
       return res.status(404).send({ message: "No email found" });
     }
@@ -70,15 +65,14 @@ module.exports.login = (req, res, next) => {
     } else {
       return res.status(401).send({ message: "Incorrect email or password" });
     }
-     
   })
   .catch((err) => {
     next(err);
   });
 };
 
-module.exports.getUserProfile = (req, res) => {
-  User.findById(req.user.id) // ← galing sa decoded token, hindi sa params
+module.exports.getUserProfile = (req, res, next) => {
+  User.findById(req.user.id)
   .then((user) => {
     if (user !== null) {
       return res.status(200).send(user);

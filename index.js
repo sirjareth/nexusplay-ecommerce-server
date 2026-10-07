@@ -7,6 +7,7 @@ require("dotenv").config();
 const { errorHandler } = require("./auth");
 
 const userRoute = require("./routes/userRoutes");
+const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ mongoose.connect(process.env.MONGODB_STRING);
 mongoose.connection.once("open", () => console.log("Connected to MongoDB"));
 
 app.use("/users", userRoute);
+app.use('/products', productRoutes);
 app.use(errorHandler);
 
 if (require.main === module) {
