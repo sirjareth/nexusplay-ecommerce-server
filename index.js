@@ -23,9 +23,9 @@ app.use("/products", productRoute);
 app.use("/cart", cartRoute);
 app.use("/orders", orderRoute);
 
-/*
 
-NEEDED TO RUN SERVER LOCALLY
+
+//NEEDED TO RUN SERVER LOCALLY
 
 if (require.main === module) {
   app.listen(process.env.PORT || 3000, () => {
@@ -33,7 +33,7 @@ if (require.main === module) {
   });
 }
 
-*/
+
 
 
 
